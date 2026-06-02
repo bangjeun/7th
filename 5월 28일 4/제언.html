@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏠 칠조홈 🏠 - 디지털 프로그래밍 7조</title>
+    <link rel="stylesheet" href="제언.css">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-ui">
+    <img src="칠조홈.png" class="hero-logo" alt="로고">
+  </div>
+</section>
+
+<section class="guestbook">
+  <h2 class="sec-title">📖 방명록</h2>
+  <p class="sec-sub">— GUESTBOOK —</p>
+  <div class="gb-wrap">
+    <div class="pbox">
+      <div class="pbox-in">
+        <div class="panel-hdr">✏️ 방명록 작성</div>
+        <div class="fg">
+          <label class="fl">👤 이름</label>
+          <input class="fi" id="iName" type="text" placeholder="Your name..." maxlength="20">
+        </div>
+        <div class="fg">
+          <label class="fl">💬 메시지</label>
+          <textarea class="fi" id="iMsg" placeholder="방명록을 남겨보세요..." maxlength="200"></textarea>
+        </div>
+        <button class="sub-btn" id="submitBtn">▶ 방명록 남기기</button>
+      </div>
+    </div>
+    <div class="entries-hdr">— 방문자 기록 ( <span id="cnt">0</span> ) —</div>
+    <div id="entriesList">
+      <div class="empty-box">아직 방명록이 없습니다<span class="blink">_</span><br>첫 번째 방문자가 되어보세요! 🌱</div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // (기존 자바스크립트 코드 그대로 복사해서 여기에 넣으세요)
+</script> 
+</body>
+</html>

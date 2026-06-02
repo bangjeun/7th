@@ -1,0 +1,265 @@
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+
+/* ===================================================
+   [공통 영역] 전체 폰트 세팅 및 프로젝트 규격
+   =================================================== */
+body {
+    font-family: 'Galmuri9', sans-serif; /* 🎯 갈무리9 폰트 전체 강제 적용 */
+    margin: 0;
+    padding: 0;
+}
+
+.section {
+    padding: 120px 0;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.6s;
+}
+.fade-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===================================================
+   🏠 캐릭터 세션 디자인 (테두리 없는 버전)
+   =================================================== */
+.character-session {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.session-header {
+    text-align: center;
+}
+.subtitle {
+    color: #8899a6;
+    font-size: 18px;
+}
+
+/* 라디오 버튼 기본 숨김 */
+input[name="char-toggle"] { 
+    display: none; 
+}
+
+/* 캐릭터 라인업 전체 컨테이너 */
+.character-lineup {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 60px 0;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* 개별 캐릭터 박스 */
+.char-box {
+    flex: 1;
+    max-width: 240px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 캐릭터 이미지 공통 속성 (180px 동일 규격) */
+.char-box img {
+    width: auto;
+    height: 180px; 
+    display: block;
+    margin: 0 auto;
+    image-rendering: pixelated; /* 도트 선명하게 처리 */
+    -ms-interpolation-mode: nearest-neighbor;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    transition: all 0.3s ease;
+}
+
+/* 마우스를 올렸을 때 살짝 위로 뜨는 효과 */
+.char-box:hover img {
+    transform: translateY(-8px);
+    filter: drop-shadow(0 10px 15px rgba(255,255,255,0.2));
+}
+
+/* 이름표 스타일 */
+.name-tag {
+    font-size: 18px;
+    color: #fff;
+    background: rgba(34, 45, 66, 0.8);
+    padding: 8px 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* 클릭(선택) 시 캐릭터 발광 효과 */
+#click-jiyoon:checked ~ .character-lineup .jiyoon-box .name-tag { background: #ff77bb; color: #000; font-weight: bold; }
+#click-jiyoon:checked ~ .character-lineup .jiyoon-box img { filter: drop-shadow(0 0 15px rgba(255,119,187,0.8)); transform: scale(1.05); }
+
+#click-taerin:checked ~ .character-lineup .taerin-box .name-tag { background: #55cc88; color: #000; font-weight: bold; }
+#click-taerin:checked ~ .character-lineup .taerin-box img { filter: drop-shadow(0 0 15px rgba(85,204,136,0.8)); transform: scale(1.05); }
+
+#click-jeon:checked ~ .character-lineup .jeon-box .name-tag { background: #ffcc44; color: #000; font-weight: bold; }
+#click-jeon:checked ~ .character-lineup .jeon-box img { filter: drop-shadow(0 0 15px rgba(255,204,68,0.8)); transform: scale(1.05); }
+
+#click-seungho:checked ~ .character-lineup .seungho-box .name-tag { background: #44aaff; color: #000; font-weight: bold; }
+#click-seungho:checked ~ .character-lineup .seungho-box img { filter: drop-shadow(0 0 15px rgba(68,170,255,0.8)); transform: scale(1.05); }
+
+
+/* ===================================================
+   💬 대화창 디자인 (글자 자동 줄바꿈 지원 버전)
+   =================================================== */
+.global-dialogue-box {
+    width: 90%;
+    max-width: 1100px;
+    min-height: 200px; /* 대사가 늘어나도 상자가 찌그러지지 않게 최소 높이 지정 */
+    background: rgba(15, 20, 30, 0.98);
+    border: 5px double #b08040; /* 고전 RPG 게임풍 테두리 */
+    padding: 35px 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+}
+
+/* 기본적으로 모든 대사 블록은 숨김 */
+.dialogue-text { 
+    display: none; 
+}
+
+.dialogue-text h3 {
+    font-size: 24px; 
+    margin-bottom: 15px;
+    color: #ffaa00;
+}
+
+.dialogue-text p {
+    font-size: 19px; 
+    color: #f1f5f9;
+    line-height: 1.8;
+    word-break: keep-all; 
+    white-space: normal; /* 🛠️ 핵심: 글자가 상자 끝에 닿으면 자동으로 줄바꿈됨 */
+    margin: 0;
+    display: inline;     /* 커서가 글자 바로 뒤에 붙도록 인라인 설정 */
+}
+
+/* 🎮 대사 끝에 깜빡이는 복고풍 네모 커서 추가 */
+.dialogue-text p::after {
+    content: '▋';
+    display: inline-block;
+    margin-left: 5px;
+    color: #ffaa00;
+    animation: cursor-blink 0.7s step-end infinite;
+    vertical-align: middle;
+}
+
+@keyframes cursor-blink {
+    from, to { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* 선택된 라디오 버튼에 따라 대사창 노출 */
+#click-jiyoon:checked ~ .global-dialogue-box .jiyoon-text { display: block; }
+#click-taerin:checked ~ .global-dialogue-box .taerin-text { display: block; }
+#click-jeon:checked ~ .global-dialogue-box .jeon-text { display: block; }
+#click-seungho:checked ~ .global-dialogue-box .seungho-text { display: block; }
+
+
+/* ===================================================
+   📱 [신규 추가] 반응형 모바일 최적화 레이아웃 (태블릿 및 스마트폰)
+   =================================================== */
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 0; /* 위아래 여백을 모바일에 맞게 절반으로 축소 */
+    }
+
+    .title {
+        font-size: 32px; /* 제목 글자 크기 축소 */
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 15px; /* 부제목 글자 크기 축소 */
+        padding: 0 20px;
+    }
+
+    /* 👥 캐릭터 배치를 4열 가로에서 -> 2열 2행(바둑판) 형태로 변경 */
+    .character-lineup {
+        flex-wrap: wrap; /* 한 줄이 넘어가면 아래로 떨어지게 설정 */
+        gap: 30px 20px;  /* 캐릭터 간격 조정 (상하 30px, 좌우 20px) */
+        margin: 40px 0;
+        padding: 0 15px;
+    }
+
+    /* 캐릭터 상자가 화면 절반씩 차지하도록 너비 조정 */
+    .char-box {
+        flex: none;
+        width: calc(50% - 10px); /* 2열로 정렬하기 위한 너비 계산 계산 */
+        max-width: none;
+    }
+
+    /* 픽셀 캐릭터가 모바일 화면 비율에 맞게 살짝 작아지도록 최적화 */
+    .char-box img {
+        height: 140px; 
+    }
+
+    /* 모바일 이름표 크기 조정 */
+    .name-tag {
+        font-size: 15px;
+        padding: 6px 15px;
+        margin-top: 12px;
+    }
+
+    /* 💬 대화창 모바일 화면 맞춤 최적화 */
+    .global-dialogue-box {
+        width: 92%; /* 양옆 여백 균형감 있게 유지 */
+        padding: 25px 20px; /* 내부 패딩을 줄여 텍스트가 표시될 공간 확보 */
+        min-height: 190px;
+    }
+
+    .dialogue-text h3 {
+        font-size: 20px; /* 대화창 캐릭터 이름 크기 조정 */
+        margin-bottom: 8px;
+    }
+
+    .dialogue-text p {
+        font-size: 16px; /* 모바일 가독성에 최적화된 글자 크기 */
+        line-height: 1.7;
+    }
+}
+
+/* 화면 폭이 아주 좁은 구형 스마트폰 환경 (400px 이하) */
+@media (max-width: 400px) {
+    .character-lineup {
+        gap: 20px 10px;
+    }
+    .char-box img {
+        height: 110px; /* 더 작은 화면에서는 캐릭터를 조금 더 축소 */
+    }
+    .name-tag {
+        font-size: 13px;
+        padding: 5px 10px;
+    }
+    .global-dialogue-box {
+        padding: 20px 15px;
+    }
+}

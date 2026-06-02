@@ -1,0 +1,86 @@
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+@font-face{font-family:'Galmuri11';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri11-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Galmuri14';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri14.woff2') format('woff2');font-weight:normal;font-display:swap}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --parch: #f2e4b0; --parch-dark: #d9c47a; --parch-text: #2e1a06; --parch-sub: #6b4420;
+  --wood-hi: #c8903c; --wood-mid: #8b5a1a; --wood-dark: #4a2c08;
+  --btn-hi: #7ec85a; --btn-mid: #4a9030; --btn-dark: #2a5e14;
+  --bg-dark: #0d1a0a; --bg-mid: #162010; --gold: #f0c040;
+  --input-bg: #e8d494; --input-bdr: #8b5a1a;
+}
+
+body{
+  background:var(--bg-dark);
+  font-family:'Galmuri14',monospace;
+  color:var(--parch-text);
+  overflow-x:hidden;
+}
+
+/* HERO */
+.hero{position:relative;width:100%;height:100vh;min-height:440px;overflow:hidden;background:#fff;}
+.hero-ui{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:clamp(2.5rem,10vh,7rem);z-index:2;}
+.hero-logo{display:block;width:clamp(260px,70vw,520px);margin:0 auto;image-rendering:pixelated;}
+
+/* GUESTBOOK */
+.guestbook{background:var(--bg-mid);background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);background-size:32px 32px;display:flex;flex-direction:column;align-items:center;padding:4rem 1rem 6rem;min-height:100vh;}
+.sec-title{font-family:'Galmuri11',monospace;font-size:clamp(1.4rem,2.5vw,1.8rem);color:var(--gold);text-align:center;margin-bottom:.4rem;text-shadow:3px 3px 0 #6b3408,0 0 20px rgba(240,192,64,.3);}
+.sec-sub{font-size:clamp(.78rem,.95vw,.88rem);color:#7a9060;text-align:center;letter-spacing:.18em;margin-bottom:2.5rem;}
+.gb-wrap{width:calc(100% - 2rem);max-width:480px}
+@media(min-width:1024px){.gb-wrap{width:clamp(380px,40vw,680px);max-width:none}}
+
+/* 파치먼트 패널 및 기타 요소들 생략 (전체 내용을 복사하세요) */
+.pbox{position:relative;background:var(--parch);border:4px solid var(--wood-dark);margin-bottom:1.4rem;box-shadow:0 0 0 3px var(--wood-mid),0 6px 20px rgba(0,0,0,.6),inset 0 2px 0 rgba(255,255,255,.5),inset 0 -2px 0 rgba(0,0,0,.1);}
+.pbox::before{content:'';position:absolute;inset:6px;border:2px solid var(--parch-dark);pointer-events:none;}
+.pbox-in{margin:10px;padding:1.2rem}
+.panel-hdr{background:var(--wood-mid);margin:-1.2rem -1.2rem 1.2rem;padding:.55rem 1rem;font-family:'Galmuri11',monospace;font-size:clamp(.8rem,1.2vw,.95rem);color:#f5e0a0;text-shadow:1px 1px 0 var(--wood-dark);letter-spacing:.08em;border-bottom:3px solid var(--wood-dark);box-shadow:inset 0 2px 0 rgba(255,255,255,.15);}
+.fi{width:100%;background:var(--input-bg);border:3px solid var(--input-bdr);padding:.6rem .8rem;outline:none;}
+.sub-btn{width:100%;background:var(--btn-mid);border:3px solid var(--btn-dark);color:#e8f8e0;font-family:'Galmuri11',monospace;padding:.8rem;cursor:pointer;}
+.entry{background:var(--parch);border:3px solid var(--wood-dark);padding:.9rem 1rem;margin-bottom:.75rem;}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--parch);padding:.75rem 1.6rem;opacity:0;transition:opacity .2s;}
+.toast.show{opacity:1}
+.blink{animation:blink 1.2s step-end infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+
+/* 전체 섹션 간격 정리 */
+section {
+    padding: 80px 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 방명록 배경 격자무늬가 화면 전체를 덮지 않게 수정 */
+.guestbook {
+    background-color: #162010;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+/* 1. 히어로 섹션: 잔디밭 배경 */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* 화면 전체 높이 */
+    background: url('이미지파일경로.jpg') no-repeat center center;
+    background-size: cover; /* 핵심: 이미지가 화면을 가득 채움 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. 로고 영역: 배경 위에 로고만 배치 */
+.hero-ui {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logo {
+    width: 60%; /* 화면 너비에 따라 조절 */
+    max-width: 500px;
+    height: auto;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디피하우스 - 디지털 프로그래밍 7조</title>
+    <link rel="stylesheet" href="제언.css">
+    <link rel="stylesheet" href="지윤.css">
+    <link rel="stylesheet" href="승호.css">
+</head>
+<body>
+
+   <section class="hero">
+    <div class="hero-ui">
+        <img src="칠조홈.png" class="hero-logo" alt="로고">
+    </div>
+</section>
+
+    <div class="main-screen">
+        <img src="집.jpg" alt="우리 팀 웹페이지 평면도" class="responsive-fullscreen-img">
+
+        <div class="pixel-character char-jiyoon">
+            <img src="운.png" alt="지윤 캐릭터">
+            <span class="char-name">지윤</span>
+        </div>
+        <div class="pixel-character char-taerin">
+            <img src="t.png" alt="태린 캐릭터">
+            <span class="char-name">태린</span>
+        </div>
+        <div class="pixel-character char-jaeon">
+            <img src="언.png" alt="제언 캐릭터">
+            <span class="char-name">제언</span>
+        </div>
+        <div class="pixel-character char-seungho">
+            <img src="승.png" alt="승호 캐릭터">
+            <span class="char-name">승호</span>
+        </div>
+        <div class="pixel-character char-dog">
+            <img src="강아지.png" alt="강아지">
+            <span class="char-name">멍멍이</span>
+        </div>
+    </div>
+
+    <section class="character-session section fade-up active">
+        <div class="session-header">
+            <h2 class="title">🏠 디피하우스 주민들</h2>
+            <p class="subtitle">캐릭터를 클릭하면 조원들의 이야기를 더 크게 들을 수 있습니다.</p>
+        </div>
+
+        <input type="radio" id="click-jiyoon" name="char-toggle" checked>
+        <input type="radio" id="click-taerin" name="char-toggle">
+        <input type="radio" id="click-jeon" name="char-toggle">
+        <input type="radio" id="click-seungho" name="char-toggle">
+
+        <div class="character-lineup">
+            <label for="click-jiyoon" class="char-box jiyoon-box">
+                <img src="운.png" alt="김지윤"><div class="name-tag">김지윤</div>
+            </label>
+            <label for="click-taerin" class="char-box taerin-box">
+                <img src="t.png" alt="김태린"><div class="name-tag">김태린</div>
+            </label>
+            <label for="click-jeon" class="char-box jeon-box">
+                <img src="언.png" alt="방제언"><div class="name-tag">방제언</div>
+            </label>
+            <label for="click-seungho" class="char-box seungho-box">
+                <img src="승.png" alt="호승호"><div class="name-tag">호승호</div>
+            </label>
+        </div>
+
+        <div class="global-dialogue-box">
+            <div class="dialogue-text jiyoon-text">
+                <h3>💬 김지윤</h3>
+                <p>"디피하우스에 사는 김지윤입니다. 06년생이고, 민트색 슬리퍼를 신고 거실을 쓸면서 걸어다니는 걸 좋아합니다. 활발한 듯 조용한 저의 방에 놀러와주셔서 감사합니다."</p>
+            </div>
+            <div class="dialogue-text taerin-text">
+                <h3>💬 김태린</h3>
+                <p>"3층에 사는 김태린입니다. 공용거실에서 소파에서 한참 동안 누워있는 걸 좋아합니다. 말차와 녹차를 주로 마시는데, 사실 차이는 저도 몰라요."</p>
+            </div>
+            <div class="dialogue-text jeon-text">
+                <h3>💬 방제언</h3>
+                <p>"디피하우스 4층에 사는 방제언입니다. 좋아하는 디자이너의 작업물들을 살펴보는 게 취미예요. 가끔 거실에서 영화를 보고 있는 모습을 보실 수 있을 거예요."</p>
+            </div>
+            <div class="dialogue-text seungho-text">
+                <h3>💬 호승호</h3>
+                <p>"맨 꼭대기 층에 사는 호승호입니다. 음악 들으면서 그림을 그리거나 조용히 밤에 산책하는 걸 좋아합니다. 티라미수 먹다가 사례 안 걸리는 법을 최근에 터득했습니다."</p>
+            </div>
+        </div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // (기존 자바스크립트 코드 그대로 복사해서 여기에 넣으세요)
+</script> 
+    </section>
+
+    <section class="guestbook">
+  <h2 class="sec-title">📖 방명록</h2>
+  <p class="sec-sub">— GUESTBOOK —</p>
+  <div class="gb-wrap">
+    <div class="pbox">
+      <div class="pbox-in">
+        <div class="panel-hdr">✏️ 방명록 작성</div>
+        <div class="fg">
+          <label class="fl">👤 이름</label>
+          <input class="fi" id="iName" type="text" placeholder="Your name..." maxlength="20">
+        </div>
+        <div class="fg">
+          <label class="fl">💬 메시지</label>
+          <textarea class="fi" id="iMsg" placeholder="방명록을 남겨보세요..." maxlength="200"></textarea>
+        </div>
+        <button class="sub-btn" id="submitBtn">▶ 방명록 남기기</button>
+      </div>
+    </div>
+    <div class="entries-hdr">— 방문자 기록 ( <span id="cnt">0</span> ) —</div>
+    <div id="entriesList">
+      <div class="empty-box">아직 방명록이 없습니다<span class="blink">_</span><br>첫 번째 방문자가 되어보세요! 🌱</div>
+    </div>
+  </div>
+</section>
+
+    <script src="script.js"></script>
+</body>
+</html>

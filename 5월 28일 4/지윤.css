@@ -1,0 +1,159 @@
+/* 1. 기본 화면 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+/* 2. 평면도를 부모 기준점으로 설정 */
+.main-screen {
+    position: relative; 
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.responsive-fullscreen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* 3. 픽셀 캐릭터 공통 스타일 (위치 기준 및 폰트만 공통 적용) */
+.pixel-character {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+    image-rendering: pixelated; /* 픽셀 아트 선명도 유지 */
+}
+
+/* 캐릭터 이름표 스타일 (공통) */
+.char-name {
+    background-color: rgba(0, 0, 0, 0.65);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin-top: 4px;
+    font-family: sans-serif;
+}
+
+
+/* 4. 📍 개별 캐릭터 설정 (애니메이션 제거) */
+
+/* --- 🌸 지윤 --- */
+.char-jiyoon {
+    top: 20%;
+    left: 12%;
+    /* animation 속성 삭제 */
+}
+.char-jiyoon img {
+    width: 190px;
+    height: auto;
+}
+
+/* --- 🌿 태린 --- */
+.char-taerin {
+    top: 10%;
+    left: 70%;
+}
+.char-taerin img {
+    width: 140px;
+    height: auto;
+}
+
+/* --- 💛 제언 --- */
+.char-jaeon {
+    top: 60%;
+    left: 8%;
+}
+.char-jaeon img {
+    width: 190px;
+    height: auto;
+}
+
+/* --- 💙 승호 --- */
+.char-seungho {
+    top: 70%;
+    left: 60%;
+}
+.char-seungho img {
+    width: 240px;
+    height: auto;
+}
+
+/* --- 🐶 강아지 --- */
+.char-dog {
+    top: 45%;
+    left: 45%;
+}
+.char-dog img {
+    width: 80px;
+    height: auto;
+}
+
+/* 5. 🏃‍♂️ 기존 @keyframes (walkIn...) 전체 삭제 가능 */
+/* 아래 내용을 모두 지워주세요 */
+/* @keyframes walkInLivingRoom { ... } */
+/* @keyframes walkInPinkRoom { ... } 등 모두 삭제 */
+
+/* 📱 모바일 반응형 처리 */
+@media (max-width: 768px) {
+    /* 1. 화면 전체를 스크롤 가능하게 변경 (확대해서 볼 수 있도록) */
+    html, body {
+        overflow: auto; 
+    }
+
+    /* 2. 평면도 컨테이너가 모바일에서도 비율을 유지하며 최소한의 크기를 확보 */
+    .main-screen {
+        width: 1000px; /* 평면도 이미지의 최소 가로폭을 고정 */
+        height: 100vh;
+        transform-origin: top left;
+        /* 화면이 너무 작으면 자동으로 살짝 축소해서 보여줌 */
+        transform: scale(0.6); 
+    }
+
+    /* 3. 모바일에서는 캐릭터들의 덩치가 너무 크지 않게 일괄 조정 */
+    .pixel-character img {
+        width: 100px !important; /* 모바일 전용 사이즈로 강제 고정 */
+    }
+}
+
+/* 1. 전체 설정 변경 */
+html, body {
+    width: 100%;
+    height: auto; /* 100% 대신 auto로 변경하여 내용만큼 늘어나게 함 */
+    overflow-x: hidden; /* 가로 스크롤만 방지 */
+    overflow-y: auto;   /* 세로 스크롤은 가능하게 함 */
+    background-color: #ffffff;
+}
+
+/* 2. 평면도 화면은 그대로 유지 */
+.main-screen {
+    position: relative; 
+    width: 100%;
+    height: 100vh; /* 첫 화면은 꽉 차게 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden; 은 유지해도 괜찮습니다. */
+}
+
+/* 3. 아래로 이어질 세션 추가 */
+.character-session {
+    min-height: 100vh; /* 각 섹션이 최소 한 화면을 차지하도록 */
+    background-color: #0b0e14; /* 배경색이 바뀌는 지점을 명확히 함 */
+}

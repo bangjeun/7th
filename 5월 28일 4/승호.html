@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang=\"ko\">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디피하우스 - 디지털 프로그래밍 7조</title>
+    <link rel="stylesheet" href="승호.css">
+</head>
+<body>
+
+   <section class="character-session section fade-up active">
+    <div class="session-header">
+        <h2 class="title">🏠 디피하우스 주민들</h2>
+        <p class="subtitle">캐릭터를 클릭하면 조원들의 이야기를 더 크게 들을 수 있습니다.</p>
+         <img src="칠조.png" alt="배경화면" class="responsive-fullscreen-img">
+    </div>
+
+
+    <input type="radio" id="click-jiyoon" name="char-toggle" checked>
+    <input type="radio" id="click-taerin" name="char-toggle">
+    <input type="radio" id="click-jeon" name="char-toggle">
+    <input type="radio" id="click-seungho" name="char-toggle">
+
+    <div class="character-lineup">
+        <label for="click-jiyoon" class="char-box jiyoon-box">
+            <img src="운.png" alt="김지윤">
+            <div class="name-tag">김지윤</div>
+        </label>
+        
+        <label for="click-taerin" class="char-box taerin-box">
+            <img src="t.png" alt="김태린">
+            <div class="name-tag">김태린</div>
+        </label>
+        
+        <label for="click-jeon" class="char-box jeon-box">
+            <img src="언.png" alt="방제언">
+            <div class="name-tag">방제언</div>
+        </label>
+        
+        <label for="click-seungho" class="char-box seungho-box">
+            <img src="승.png" alt="호승호">
+            <div class="name-tag">호승호</div>
+        </label>
+    </div>
+
+    <div class="global-dialogue-box">
+        <div class="dialogue-text jiyoon-text">
+            <h3>💬 김지윤</h3>
+            <p>"디피하우스에 사는 김지윤입니다. 06년생이고, 민트색 슬리퍼를 신고 거실을 쓸면서 걸어다니는 걸 좋아합니다. 활발한 듯 조용한 저의 방에 놀러와주셔서 감사합니다."</p>
+        </div>
+        <div class="dialogue-text taerin-text">
+            <h3>💬 김태린</h3>
+            <p>"3층에 사는 김태린입니다. 공용거실에서 소파에서 한참 동안 누워있는 걸 좋아합니다. 말차와 녹차를 주로 마시는데, 사실 차이는 저도 몰라요."</p>
+        </div>
+        <div class="dialogue-text jeon-text">
+            <h3>💬 방제언</h3>
+            <p>"디피하우스 4층에 사는 방제언입니다. 좋아하는 디자이너의 작업물들을 살펴보는 게 취미예요. 가끔 거실에서 영화를 보고 있는 모습을 보실 수 있을 거예요."</p>
+        </div>
+        <div class="dialogue-text seungho-text">
+            <h3>💬 호승호</h3>
+            <p>"맨 꼭대기 층에 사는 호승호입니다. 음악 들으면서 그림을 그리거나 조용히 밤에 산책하는 걸 좋아합니다. 티라미수 먹다가 사례 안 걸리는 법을 최근에 터득했습니다."</p>
+        </div>
+    </div>
+   </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputs = document.querySelectorAll('input[name="char-toggle"]');
+        const dialogueTexts = document.querySelectorAll('.dialogue-text');
+        const originalTexts = new Map();
+        
+        // 원래 텍스트를 Map에 안전하게 백업해두고 화면에서는 비우기
+        dialogueTexts.forEach(box => {
+            const p = box.querySelector('p');
+            if (p) {
+                originalTexts.set(p, p.textContent.trim());
+                p.textContent = '';
+            }
+        });
+
+        let typingTimer = null;
+
+        function startTypingEffect() {
+            // 현재 작동 중인 타이머가 있으면 초기화
+            if (typingTimer) clearInterval(typingTimer);
+            
+            // 모든 텍스트를 다시 빈 칸으로 초기화
+            originalTexts.forEach((text, p) => {
+                p.textContent = '';
+            });
+
+            // 선택된 라디오 버튼의 id에 따라 알맞은 대사 상자 찾기
+            const checkedInput = document.querySelector('input[name="char-toggle"]:checked');
+            if (!checkedInput) return;
+
+            const charName = checkedInput.id.replace('click-', '');
+            const targetBox = document.querySelector(`.${charName}-text`);
+            
+            if (targetBox) {
+                const p = targetBox.querySelector('p');
+                const fullText = originalTexts.get(p);
+                
+                if (p && fullText) {
+                    let index = 0;
+                    // 35ms 마다 한 글자씩 타이핑 (숫자를 줄이면 속도가 빨라집니다)
+                    typingTimer = setInterval(() => {
+                        if (index < fullText.length) {
+                            p.textContent += fullText.charAt(index);
+                            index++;
+                        } else {
+                            clearInterval(typingTimer);
+                        }
+                    }, 35);
+                }
+            }
+        }
+
+        // 라디오 버튼을 바꿀 때마다 타이핑 효과 실행
+        inputs.forEach(input => {
+            input.addEventListener('change', startTypingEffect);
+        });
+
+        // 처음 사이트 열렸을 때 첫 번째 조원 대사 실행
+        startTypingEffect();
+    });
+    </script>
+</body>
+</html>
